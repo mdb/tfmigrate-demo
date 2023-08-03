@@ -42,6 +42,9 @@ jobs:
       - name: Apply project-one
         run: make apply-two
 
+      - name: Show current github.ref
+        run: echo ${{ github.ref }}
+
       - name: Move local_file.bar HCL from project-one to project-two
         if: github.ref == 'refs/heads/example-succeeding-pr'
         run: make move-bar-to-project-two
