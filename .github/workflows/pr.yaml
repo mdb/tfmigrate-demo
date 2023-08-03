@@ -43,7 +43,7 @@ jobs:
         run: make apply-two
 
       - name: Move local_file.bar HCL from project-one to project-two
-        if: ${{ contains(github.event.head_commit.message, 'successful') }}
+        if: github.event.pull_request.base.ref == 'example-succeeding-pr'
         run: make move-bar-to-project-two
 
       - name: Plan tfmigrate migration to migrate local_file.bar from project-one state to project-two state
