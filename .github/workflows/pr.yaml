@@ -39,7 +39,7 @@ jobs:
       - name: Apply project-one
         run: make apply-one
 
-      - name: Apply project-one
+      - name: Apply project-two
         run: make apply-two
 
       - name: Move local_file.bar HCL from project-one to project-two
