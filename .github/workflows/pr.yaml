@@ -42,6 +42,10 @@ jobs:
       - name: Apply project-one
         run: make apply-two
 
+      - name: Apply project-one
+        if: ${{ contains(github.event.head_commit.message, 'successful') }}
+        run: make move-foo-to-project-two
+
       - name: Plan tfmigrate migration
         run: make plan-migration
 
