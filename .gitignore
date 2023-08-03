@@ -1,0 +1,7 @@
+foo.txt
+bar.txt
+baz.txt
+bootstrap/.terraform
+bootstrap/terraform.tfstate*
+project-one/.terraform
+project-two/.terraform
