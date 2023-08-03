@@ -49,7 +49,7 @@ plan-migration:
 .PHONY: plan-migration
 
 apply-migration:
-	tfmigrate plan migration.hcl
+	tfmigrate apply migration.hcl
 .PHONY: apply-migration
 
 clean:
