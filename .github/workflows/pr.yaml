@@ -18,6 +18,8 @@ jobs:
         run: make tfenv
 
       - name: Use gh CLI and gh-install extention to install tfmigrate
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh extension install redraw/gh-install
           gh install minamijoyo/tfmigrate
