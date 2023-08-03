@@ -39,9 +39,10 @@ apply-two:
 			-auto-approve
 .PHONY: apply-two
 
-move-foo-to-project-two:
+move-bar-to-project-two:
 	cp .new-project-one-main.tf project-one/main.tf
 	cp .new-project-two-main.tf project-two/main.tf
+.PHONY: move-bar-to-project-two
 
 plan-migration:
 	tfmigrate plan migration.hcl

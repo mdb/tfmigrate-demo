@@ -42,12 +42,12 @@ jobs:
       - name: Apply project-one
         run: make apply-two
 
-      - name: Apply project-one
+      - name: Move local_file.bar HCL from project-one to project-two
         if: ${{ contains(github.event.head_commit.message, 'successful') }}
-        run: make move-foo-to-project-two
+        run: make move-bar-to-project-two
 
-      - name: Plan tfmigrate migration
+      - name: Plan tfmigrate migration to migrate local_file.bar from project-one state to project-two state
         run: make plan-migration
 
-      - name: Apply tfmigrate migration
+      - name: Apply tfmigrate migration to migrate local_file.bar from project-one state to project-two state
         run: make apply-migration
