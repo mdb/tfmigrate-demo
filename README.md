@@ -37,7 +37,17 @@ And what if each root module project uses a different version of Terraform?
 Solution: use [tfmigrate](https://github.com/minamijoyo/tfmigrate) in concert
 with [tfenv](https://github.com/tfutils/tfenv).
 
-## Try the demo yourself
+## See the demo in GitHub Actions
+
+The workflow described in "Try the demo for yourself" (below) is automated and demo'd in [GitHub Actions](https://github.com/mdb/tfmigrate-demo/actions).
+
+[PR 2](https://github.com/mdb/tfmigrate-demo/pull/2) triggers an example GitHub
+Actions workflow that fails its `tfmigrate plan` step: https://github.com/mdb/tfmigrate-demo/actions/runs/5751623101/job/15590784575
+
+[PR 3](https://github.com/mdb/tfmigrate-demo/pull/3) triggers an example GitHub
+Actions workflow that successfully performs a `tfmigrate apply` step: https://github.com/mdb/tfmigrate-demo/actions/runs/5752284549/job/15592915614
+
+## Try the demo yourself locally
 
 ### Install dependencies
 
@@ -257,13 +267,3 @@ $ AWS_PROFILE=superadmin tfmigrate apply migration.hcl
 2023/08/02 14:41:40 [INFO] [migrator@project-one] push the new state to remote
 2023/08/02 14:41:42 [INFO] [migrator] multi state migrator apply success!
 ```
-
-### GitHub Actions
-
-The above-described workflow is also automated in GitHub Actions.
-
-[PR 2](https://github.com/mdb/tfmigrate-demo/pull/2) triggers an example GitHub
-Actions workflow that fails its `tfmigrate plan` step: https://github.com/mdb/tfmigrate-demo/actions/runs/5751623101/job/15590784575
-
-[PR 3](https://github.com/mdb/tfmigrate-demo/pull/3) triggers an example GitHub
-Actions workflow that successfully performs a `tfmigrate apply` step: https://github.com/mdb/tfmigrate-demo/actions/runs/5752284549/job/15592915614
