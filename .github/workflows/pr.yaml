@@ -17,12 +17,18 @@ jobs:
       - name: Use tfenv to install required Terraform version
         run: make tfenv
 
-      - name: Use gh CLI and gh-install extention to install tfmigrate
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Install tfmigrate
         run: |
-          gh extension install redraw/gh-install
-          gh install minamijoyo/tfmigrate
+          curl \
+            --fail \
+            --silent \
+            --show-error \
+            --location \
+            "https://github.com/minamijoyo/tfmigrate/releases/download/v0.3.13/tfmigrate_0.3.13_linux_amd64.tar.gz" \
+            --output tfmigrate.tar.gz \
+
+          tar -zxvf tfmigrate.tar.gz
+          cp tfmigrate /usr/bin
 
       - name: Start localstack mock AWS environment
         run: make up
