@@ -22,6 +22,10 @@ Overview:
   of `local_file.bar` from management in `project-one` to management in
   `project-two`.
 
+See [PR 2](https://github.com/mdb/tfmigrate-demo/pull/2) for an example GitHub
+Actions workflow that fails its `tfmigrate plan` step. See [PR 3](https://github.com/mdb/tfmigrate-demo/pull/3) for an example
+GitHub Actions workflow that successfully performs a `tfmigrate apply`.
+
 ## More detailed problem statement
 
 How can we codify and automate the migration of a Terraform-managed
@@ -253,3 +257,13 @@ $ AWS_PROFILE=superadmin tfmigrate apply migration.hcl
 2023/08/02 14:41:40 [INFO] [migrator@project-one] push the new state to remote
 2023/08/02 14:41:42 [INFO] [migrator] multi state migrator apply success!
 ```
+
+### GitHub Actions
+
+The above-described workflow is also automated in GitHub Actions.
+
+[PR 2](https://github.com/mdb/tfmigrate-demo/pull/2) triggers an example GitHub
+Actions workflow that fails its `tfmigrate plan` step: https://github.com/mdb/tfmigrate-demo/actions/runs/5751623101/job/15590784575
+
+[PR 3](https://github.com/mdb/tfmigrate-demo/pull/3) triggers an example GitHub
+Actions workflow that successfully performs a `tfmigrate apply` step: https://github.com/mdb/tfmigrate-demo/actions/runs/5752284549/job/15592915614
