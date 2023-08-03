@@ -28,7 +28,7 @@ jobs:
             --output tfmigrate.tar.gz \
 
           tar -zxvf tfmigrate.tar.gz
-          cp tfmigrate /usr/bin
+          cp tfmigrate /usr/local/bin/tfmigrate
 
       - name: Start localstack mock AWS environment
         run: make up
