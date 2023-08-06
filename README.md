@@ -1,8 +1,12 @@
 # tfmigrate-demo
 
 A demo showing how [tfmigrate](https://github.com/minamijoyo/tfmigrate) can be
-used to automate the migration of Terraform resources between root module
+used to codify and automate the migration of Terraform resources between root module
 project configurations, each using different S3 remote states.
+
+The demo also shows how `tfmigrate` enables teams to codify state migrations as HCL,
+subjecting the migrations to code review and CI/CD, similar to other Terraform
+changes codified as HCL.
 
 Overview:
 
@@ -19,8 +23,9 @@ Overview:
   ensures [tfenv](https://github.com/tfutils/tfenv) selects the proper Terraform
   for use in each project.
 * `migration.hcl` is a [tfmigrate](https://github.com/minamijoyo/tfmigrate) migration that orchestrates the migration
-  of `local_file.bar` from management in `project-one` to management in
-  `project-two`.
+  of `local_file.bar` from management in `project-one` to management in `project-two`.
+  `tfmigrate` enables teams to codify migrations as HCL, subjecting the
+  migrations to code review and CI/CD, alongside terraform HCL configurations.
 
 See [PR 2](https://github.com/mdb/tfmigrate-demo/pull/2) for an example GitHub
 Actions workflow that fails its `tfmigrate plan` step. See [PR 3](https://github.com/mdb/tfmigrate-demo/pull/3) for an example
