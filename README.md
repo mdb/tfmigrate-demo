@@ -103,7 +103,7 @@ Initially, `apply`-ing `project-two` results in the creation of 1 file in the
 make apply-two
 ```
 
-## Use `tfmigrate` to migrate `local_file.bar`
+### Use `tfmigrate` to migrate `local_file.bar`
 
 Next, use [tfmigrate](https://github.com/minamijoyo/tfmigrate) to `plan` the
 migration of `local_file.bar` from `project-one`'s Terraform state to
@@ -267,4 +267,24 @@ $ AWS_PROFILE=superadmin tfmigrate apply migration.hcl
 2023/08/02 14:41:38 [INFO] [migrator@project-two] push the new state to remote
 2023/08/02 14:41:40 [INFO] [migrator@project-one] push the new state to remote
 2023/08/02 14:41:42 [INFO] [migrator] multi state migrator apply success!
+```
+
+### Verify `project-one` and `project-two` have no outstanding Terraform plan diffs
+
+Terraform plan and apply `project-one`; observe there are `No changes. Infrastructure is up-to-date`:
+
+```
+make apply-one
+```
+
+Terraform plan and apply `project-two`; observe there are `No changes. Infrastructure is up-to-date`:
+
+```
+make apply-two
+```
+
+### Tear down `localstack` mock AWS environment
+
+```
+make down
 ```
