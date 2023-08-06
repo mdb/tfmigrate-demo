@@ -17,8 +17,8 @@ Overview:
   `bar.txt` files and uses `s3://tfmigrate-demo/project-one/terraform.tfstate` as
   its remote state backend.
 * `project-two` is a minimal Terraform 1.4.6 project that creates a `baz.txt` file
-  and uses `bar.txt` file and uses `s3://tfmigrate-demo/project-two/terraform.tfstate`
-  as its remote state backend.
+  and uses `s3://tfmigrate-demo/project-two/terraform.tfstate` as its remote state
+  backend.
 * `project-one` and `project-two` each feature a `.terraform-version` file. This
   ensures [tfenv](https://github.com/tfutils/tfenv) selects the proper Terraform
   for use in each project.
