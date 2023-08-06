@@ -8,6 +8,9 @@ The demo also shows how `tfmigrate` enables teams to codify state migrations as 
 subjecting the migrations to code review and CI/CD, similar to other Terraform
 changes codified as HCL.
 
+See [Using tfmigrate to Codify and Automate Terraform State Operations](https://mikeball.info/blog/using-tfmigrate-to-codify-and-automate-terraform-state-operations/)
+as the corresponding blog post.
+
 Overview:
 
 * `bootstrap` is a minimal Terraform project that creates a [localstack](https://localstack.cloud/)
