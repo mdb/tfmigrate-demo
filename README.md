@@ -44,10 +44,10 @@ with [tfenv](https://github.com/tfutils/tfenv).
 The workflow described in "Try the demo for yourself" (below) is automated and demoed in [GitHub Actions](https://github.com/mdb/tfmigrate-demo/actions).
 
 [PR 2](https://github.com/mdb/tfmigrate-demo/pull/2) triggers an example GitHub
-Actions workflow that fails its `tfmigrate plan` step: https://github.com/mdb/tfmigrate-demo/actions/runs/5754942633
+Actions workflow that fails its `tfmigrate plan` step: https://github.com/mdb/tfmigrate-demo/actions/runs/5776326609/job/15655320734
 
 [PR 3](https://github.com/mdb/tfmigrate-demo/pull/3) triggers an example GitHub
-Actions workflow that successfully performs a `tfmigrate apply` step: https://github.com/mdb/tfmigrate-demo/actions/runs/5754946044
+Actions workflow that successfully performs a `tfmigrate apply` step: https://github.com/mdb/tfmigrate-demo/actions/runs/5776333280/job/15655332928
 
 See `.github/workflows/pr.yaml` for the GitHub Actions workflow configuration.
 
