@@ -12,9 +12,9 @@ Overview:
 * `project-one` is a minimal Terraform 0.13.7 project that creates `foo.txt` and
   `bar.txt` files and uses `s3://tfmigrate-demo/project-one/terraform.tfstate` as
   its remote state backend.
-* `project-two` is a minimal Terraform 1.4.6 project that a `baz.txt` file and uses
-  `bar.txt` files and uses `s3://tfmigrate-demo/project-two/terraform.tfstate` as
-  its remote state backend.
+* `project-two` is a minimal Terraform 1.4.6 project that creates a `baz.txt` file
+  and uses `bar.txt` file and uses `s3://tfmigrate-demo/project-two/terraform.tfstate`
+  as its remote state backend.
 * `project-one` and `project-two` each feature a `.terraform-version` file. This
   ensures [tfenv](https://github.com/tfutils/tfenv) selects the proper Terraform
   for use in each project.
@@ -25,6 +25,8 @@ Overview:
 See [PR 2](https://github.com/mdb/tfmigrate-demo/pull/2) for an example GitHub
 Actions workflow that fails its `tfmigrate plan` step. See [PR 3](https://github.com/mdb/tfmigrate-demo/pull/3) for an example
 GitHub Actions workflow that successfully performs a `tfmigrate apply`.
+
+See `.github/workflows/pr.yaml` for the GitHub Actions workflow configuration.
 
 ## More detailed problem statement
 
@@ -39,13 +41,15 @@ with [tfenv](https://github.com/tfutils/tfenv).
 
 ## See the demo in GitHub Actions
 
-The workflow described in "Try the demo for yourself" (below) is automated and demo'd in [GitHub Actions](https://github.com/mdb/tfmigrate-demo/actions).
+The workflow described in "Try the demo for yourself" (below) is automated and demoed in [GitHub Actions](https://github.com/mdb/tfmigrate-demo/actions).
 
 [PR 2](https://github.com/mdb/tfmigrate-demo/pull/2) triggers an example GitHub
 Actions workflow that fails its `tfmigrate plan` step: https://github.com/mdb/tfmigrate-demo/actions/runs/5754942633
 
 [PR 3](https://github.com/mdb/tfmigrate-demo/pull/3) triggers an example GitHub
 Actions workflow that successfully performs a `tfmigrate apply` step: https://github.com/mdb/tfmigrate-demo/actions/runs/5754946044
+
+See `.github/workflows/pr.yaml` for the GitHub Actions workflow configuration.
 
 ## Try the demo yourself locally
 
@@ -75,9 +79,6 @@ Create a `localstack` `tfmigrate-demo` S3 bucket. This will be used to host
 ```
 make bootstrap
 ```
-
-NOTE: This may not actually work; I've only been able to use a real AWS S3
-bucket.
 
 ### `terraform apply` `project-one`
 
