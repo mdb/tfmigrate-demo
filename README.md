@@ -267,3 +267,7 @@ $ AWS_PROFILE=superadmin tfmigrate apply migration.hcl
 2023/08/02 14:41:40 [INFO] [migrator@project-one] push the new state to remote
 2023/08/02 14:41:42 [INFO] [migrator] multi state migrator apply success!
 ```
+
+Review the migration history stored in S3 on localstack by visiting: 
+
+http://localhost.localstack.cloud:4566/tfmigrate-demo/tfmigrate/history.json
