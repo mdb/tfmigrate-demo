@@ -1,8 +1,15 @@
 # tfmigrate-demo
 
 A demo showing how [tfmigrate](https://github.com/minamijoyo/tfmigrate) can be
-used to automate the migration of Terraform resources between root module
+used to codify and automate the migration of Terraform resources between root module
 project configurations, each using different S3 remote states.
+
+The demo also shows how `tfmigrate` enables teams to codify state migrations as HCL,
+subjecting the migrations to code review and CI/CD, similar to other Terraform
+changes codified as HCL.
+
+See [Using tfmigrate to Codify and Automate Terraform State Operations](https://mikeball.info/blog/using-tfmigrate-to-codify-and-automate-terraform-state-operations/)
+as the corresponding blog post.
 
 Overview:
 
@@ -12,19 +19,22 @@ Overview:
 * `project-one` is a minimal Terraform 0.13.7 project that creates `foo.txt` and
   `bar.txt` files and uses `s3://tfmigrate-demo/project-one/terraform.tfstate` as
   its remote state backend.
-* `project-two` is a minimal Terraform 1.4.6 project that a `baz.txt` file and uses
-  `bar.txt` files and uses `s3://tfmigrate-demo/project-two/terraform.tfstate` as
-  its remote state backend.
+* `project-two` is a minimal Terraform 1.4.6 project that creates a `baz.txt` file
+  and uses `s3://tfmigrate-demo/project-two/terraform.tfstate` as its remote state
+  backend.
 * `project-one` and `project-two` each feature a `.terraform-version` file. This
   ensures [tfenv](https://github.com/tfutils/tfenv) selects the proper Terraform
   for use in each project.
 * `migration.hcl` is a [tfmigrate](https://github.com/minamijoyo/tfmigrate) migration that orchestrates the migration
-  of `local_file.bar` from management in `project-one` to management in
-  `project-two`.
+  of `local_file.bar` from management in `project-one` to management in `project-two`.
+  `tfmigrate` enables teams to codify migrations as HCL, subjecting the
+  migrations to code review and CI/CD, alongside terraform HCL configurations.
 
 See [PR 2](https://github.com/mdb/tfmigrate-demo/pull/2) for an example GitHub
 Actions workflow that fails its `tfmigrate plan` step. See [PR 3](https://github.com/mdb/tfmigrate-demo/pull/3) for an example
 GitHub Actions workflow that successfully performs a `tfmigrate apply`.
+
+See `.github/workflows/pr.yaml` for the GitHub Actions workflow configuration.
 
 ## More detailed problem statement
 
@@ -39,13 +49,15 @@ with [tfenv](https://github.com/tfutils/tfenv).
 
 ## See the demo in GitHub Actions
 
-The workflow described in "Try the demo for yourself" (below) is automated and demo'd in [GitHub Actions](https://github.com/mdb/tfmigrate-demo/actions).
+The workflow described in "Try the demo for yourself" (below) is automated and demoed in [GitHub Actions](https://github.com/mdb/tfmigrate-demo/actions).
 
 [PR 2](https://github.com/mdb/tfmigrate-demo/pull/2) triggers an example GitHub
-Actions workflow that fails its `tfmigrate plan` step: https://github.com/mdb/tfmigrate-demo/actions/runs/5751623101/job/15590784575
+Actions workflow that fails its `tfmigrate plan` step: https://github.com/mdb/tfmigrate-demo/actions/runs/5776326609/job/15655320734
 
 [PR 3](https://github.com/mdb/tfmigrate-demo/pull/3) triggers an example GitHub
-Actions workflow that successfully performs a `tfmigrate apply` step: https://github.com/mdb/tfmigrate-demo/actions/runs/5752284549/job/15592915614
+Actions workflow that successfully performs a `tfmigrate apply` step: https://github.com/mdb/tfmigrate-demo/actions/runs/5776333280/job/15655332928
+
+See `.github/workflows/pr.yaml` for the GitHub Actions workflow configuration.
 
 ## Try the demo yourself locally
 
@@ -76,9 +88,6 @@ Create a `localstack` `tfmigrate-demo` S3 bucket. This will be used to host
 make bootstrap
 ```
 
-NOTE: This may not actually work; I've only been able to use a real AWS S3
-bucket.
-
 ### `terraform apply` `project-one`
 
 Initially, `apply`-ing `project-one` results in the creation of 2 files in the
@@ -102,7 +111,7 @@ Initially, `apply`-ing `project-two` results in the creation of 1 file in the
 make apply-two
 ```
 
-## Use `tfmigrate` to migrate `local_file.bar`
+### Use `tfmigrate` to migrate `local_file.bar`
 
 Next, use [tfmigrate](https://github.com/minamijoyo/tfmigrate) to `plan` the
 migration of `local_file.bar` from `project-one`'s Terraform state to
@@ -268,6 +277,29 @@ $ AWS_PROFILE=superadmin tfmigrate apply migration.hcl
 2023/08/02 14:41:42 [INFO] [migrator] multi state migrator apply success!
 ```
 
+### Verify `project-one` and `project-two` have no outstanding Terraform plan diffs
+
+Terraform plan and apply `project-one`; observe there are `No changes. Infrastructure is up-to-date`:
+
+```
+make apply-one
+```
+
+Terraform plan and apply `project-two`; observe there are `No changes. Infrastructure is up-to-date`:
+
+```
+make apply-two
+```
+
+### Tear down `localstack` mock AWS environment
+
+```
+make down
+```
+
+### Check migration history
+
 Review the migration history stored in S3 on localstack by visiting: 
 
 http://localhost.localstack.cloud:4566/tfmigrate-demo/tfmigrate/history.json
+

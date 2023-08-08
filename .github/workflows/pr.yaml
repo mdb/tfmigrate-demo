@@ -36,10 +36,10 @@ jobs:
       - name: Bootstrap localstack to have tfmigrate-demo S3 bucket
         run: make bootstrap
 
-      - name: Apply project-one
+      - name: Terraform plan and apply project-one to create initial configuration
         run: make apply-one
 
-      - name: Apply project-one
+      - name: Terraform plan and apply project-two to create initial configuration
         run: make apply-two
 
       - name: Move local_file.bar HCL from project-one to project-two
@@ -51,3 +51,9 @@ jobs:
 
       - name: Apply tfmigrate migration to migrate local_file.bar from project-one state to project-two state
         run: make apply-migration
+
+      - name: Terraform plan and apply project-one to verify there are no outstanding post-migration changes
+        run: make apply-one
+
+      - name: Terraform plan and apply project-two to verify there are no outstanding post-migration changes
+        run: make apply-two
