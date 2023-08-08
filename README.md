@@ -59,6 +59,22 @@ Actions workflow that successfully performs a `tfmigrate apply` step: https://gi
 
 See `.github/workflows/pr.yaml` for the GitHub Actions workflow configuration.
 
+## Real World GitOps Workflow
+
+Note this demo is a bit contrived, in large part because it uses ephemeral local
+Terraform projects whose resources and state aren't persistant. A real world
+GitOps-esque workflow against an existing project would look more like...
+
+1. Open a PR containing the desired `tfmigrate` migration HCL and desired Terraform
+   configuration changes.
+2. CI detects the presence of a `tfmigrate` migration HCL and verifies the
+   changes via `tfmigrate plan`.
+3. Following successful CI and code review approval, the PR is merged.
+4. CI/CD detects the presence of the new `tfmigrate` migration HCL  and performs
+   `tfmigrate plan` and `tfmigrate apply` to perform the migration, similar to
+   what's done via `terraform plan` and `terraform apply` for other Terraform
+   changes.
+
 ## Try the demo yourself locally
 
 ### Install dependencies
@@ -72,6 +88,13 @@ brew install tfenv
 ```
 
 The demo also assumes [Docker](https://www.docker.com/) is installed and running.
+
+### Clone `tfmigrate-demo`
+
+```
+git clone git@github.com:mdb/tfmigrate-demo.git \
+  && cd tfmigrate-demo
+```
 
 ### Bootstrap `localstack` environment
 
