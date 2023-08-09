@@ -314,15 +314,42 @@ Terraform plan and apply `project-two`; observe there are `No changes. Infrastru
 make apply-two
 ```
 
+### Check migration history
+
+`.tfmigrate.hcl` configures `tfmigrate`'s [history](https://github.com/minamijoyo/tfmigrate#history-block),
+which records migration history and status as a JSON document.
+
+To view the history JSON:
+
+```
+curl http://localhost.localstack.cloud:4566/tfmigrate-demo/tfmigrate/history.json
+{
+    "version": 1,
+    "records": {
+        "migration.hcl": {
+            "type": "multi_state",
+            "name": "mv_local_file_bar",
+            "applied_at": "2023-08-09T10:22:59.897417-04:00"
+        }
+    }
+}
+```
+
+`tfmigrate list` can also be used to view migrations:
+
+```
+tfmigrate list
+migration.hcl
+```
+
+`tfmigrate list --status=unapplied` reports any outstanding, unapplied migrations:
+
+```
+tfmigrate list --status=unapplied
+```
+
 ### Tear down `localstack` mock AWS environment
 
 ```
 make down
 ```
-
-### Check migration history
-
-Review the migration history stored in S3 on localstack by visiting: 
-
-http://localhost.localstack.cloud:4566/tfmigrate-demo/tfmigrate/history.json
-

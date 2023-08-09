@@ -7,7 +7,6 @@ up: tfenv
 	docker-compose up \
 		--detach \
 		--build
-.PHONY: up
 
 down:
 	docker-compose down \
@@ -39,20 +38,26 @@ apply-two:
 			-auto-approve
 .PHONY: apply-two
 
+apply: bootstrap apply-one apply-two
+.PHONY: apply
+
 move-bar-to-project-two:
 	cp .new-project-one-main.tf project-one/main.tf
 	cp .new-project-two-main.tf project-two/main.tf
 .PHONY: move-bar-to-project-two
 
 plan-migration:
-	tfmigrate plan migration.hcl
+	tfmigrate plan \
+		migration.hcl
 .PHONY: plan-migration
 
 apply-migration:
-	tfmigrate apply migration.hcl
+	tfmigrate apply \
+		migration.hcl
 .PHONY: apply-migration
 
 clean:
 	rm *.txt || true
+	rm -rf bootstrap/.terraform || true
 	rm -rf project-one/.terraform || true
 	rm -rf project-two/.terraform || true
