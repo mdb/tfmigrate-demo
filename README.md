@@ -319,3 +319,10 @@ make apply-two
 ```
 make down
 ```
+
+### Check migration history
+
+Review the migration history stored in S3 on localstack by visiting: 
+
+http://localhost.localstack.cloud:4566/tfmigrate-demo/tfmigrate/history.json
+
