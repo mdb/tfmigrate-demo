@@ -47,10 +47,10 @@ jobs:
         run: make move-bar-to-project-two
 
       - name: Plan tfmigrate migration to migrate local_file.bar from project-one state to project-two state
-        run: make plan-migration
+        run: make tfmigrate-plan
 
       - name: Apply tfmigrate migration to migrate local_file.bar from project-one state to project-two state
-        run: make apply-migration
+        run: make tfmigrate-apply
 
       - name: Terraform plan and apply project-one to verify there are no outstanding post-migration changes
         run: make apply-one

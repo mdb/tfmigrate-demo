@@ -41,20 +41,30 @@ apply-two:
 apply: bootstrap apply-one apply-two
 .PHONY: apply
 
+project-one-state:
+	curl http://localhost.localstack.cloud:4566/tfmigrate-demo/project-one/terraform.tfstate
+.PHONY: project-one-state
+
+project-two-state:
+	curl http://localhost.localstack.cloud:4566/tfmigrate-demo/project-two/terraform.tfstate
+.PHONY: project-two-state
+
 move-bar-to-project-two:
 	cp .new-project-one-main.tf project-one/main.tf
 	cp .new-project-two-main.tf project-two/main.tf
 .PHONY: move-bar-to-project-two
 
-plan-migration:
-	tfmigrate plan \
-		migration.hcl
-.PHONY: plan-migration
+tfmigrate-plan:
+	tfmigrate plan
+.PHONY: tfmigrate-plan
 
-apply-migration:
-	tfmigrate apply \
-		migration.hcl
-.PHONY: apply-migration
+tfmigrate-apply:
+	tfmigrate apply
+.PHONY: tfmigrate-apply
+
+tfmigrate-history:
+	curl http://localhost.localstack.cloud:4566/tfmigrate-demo/tfmigrate/history.json
+.PHONY: tfmigrate-history
 
 clean:
 	rm *.txt || true
