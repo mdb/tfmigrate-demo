@@ -180,6 +180,7 @@ yet moved `local_file.bar`'s recource declaration HCL from `project-one` to
 `project-two.`
 
 ```
+tfmigrate plan
 2023/08/15 19:40:23 [INFO] AWS Auth provider used: "StaticProvider"
 2023/08/15 19:40:23 [INFO] [runner] unapplied migration files: [migration.hcl]
 2023/08/15 19:40:23 [INFO] [runner] load migration file: migration.hcl
