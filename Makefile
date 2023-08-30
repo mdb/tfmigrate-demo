@@ -41,11 +41,15 @@ apply-two:
 apply: bootstrap apply-one apply-two
 .PHONY: apply
 
-project-one-state:
+curl-state-bucket:
+	curl http://localhost.localstack.cloud:4566/tfmigrate-demo
+.PHONY: state-bucket
+
+curl-one-state:
 	curl http://localhost.localstack.cloud:4566/tfmigrate-demo/project-one/terraform.tfstate
 .PHONY: project-one-state
 
-project-two-state:
+curl-two-state:
 	curl http://localhost.localstack.cloud:4566/tfmigrate-demo/project-two/terraform.tfstate
 .PHONY: project-two-state
 
