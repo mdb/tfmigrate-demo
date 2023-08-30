@@ -10,5 +10,4 @@ services:
       - DATA_DIR=/tmp/localstack/data
       - DEBUG=1
     volumes:
-      - "./.localstack:/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
